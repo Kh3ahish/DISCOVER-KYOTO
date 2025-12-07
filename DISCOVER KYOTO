@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A travel guide to Kyoto, Japan, featuring top attractions and reasons to visit.">
+    <title>Discover Kyoto: The Soul of Japan</title>
+    
+    <!-- FOR YOUR ASSIGNMENT: 
+         1. Create a folder named 'styles'
+         2. Create a file inside it named 'style.css'
+         3. Cut everything between <style> and </style> and paste it into style.css
+         4. Delete the <style> tags here
+         5. Uncomment the link tag below:
+    -->
+    <!-- <link rel="stylesheet" href="styles/style.css"> -->
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            /* Palette: Traditional Japanese colors */
+            --primary-red: #b74b4b;   /* Akane (Deep Red) */
+            --dark-slate: #2c3e50;    /* Tetsukon (Iron Navy) */
+            --paper-white: #f9f9f9;   /* Gofun (Chalk White) */
+            --text-main: #333333;
+            --accent-gold: #c5a059;
+            --soft-gray: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--paper-white);
+        }
+
+        /* --- HEADER (Hero Section) --- */
+        header {
+            background: linear-gradient(135deg, var(--dark-slate), #4a698a);
+            color: #fff;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 8px solid var(--primary-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-top: 10px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 1rem;
+            flex-wrap: wrap; /* Good for mobile */
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-slate);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-red);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- LAYOUT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* Main content vs Sidebar */
+            gap: 40px;
+        }
+
+        /* --- MAIN TYPOGRAPHY --- */
+        h2 {
+            color: var(--primary-red);
+            border-bottom: 1px solid var(--soft-gray);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--dark-slate);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- SECTIONS & ARTICLES --- */
+        article {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-left: 4px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        article:hover {
+            border-left-color: var(--accent-gold);
+        }
+
+        .highlight-box {
+            background-color: #fdf6f6;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* --- IMAGES (FIGURE & FIGCAPTION) --- */
+        figure {
+            margin: 0 0 20px 0;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to right, #ddd, #ccc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        figcaption {
+            font-size: 0.9rem;
+            color: #777;
+            padding: 10px;
+            text-align: center;
+            font-style: italic;
+            border-top: 1px solid #eee;
+        }
+
+        /* --- ASIDE (SIDEBAR) --- */
+        aside {
+            background-color: var(--dark-slate);
+            color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            height: fit-content;
+            position: sticky; /* Sticks while scrolling */
+            top: 100px; 
+        }
+
+        aside h3 {
+            color: var(--accent-gold);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        aside strong {
+            color: #e0e0e0;
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- QUOTES --- */
+        blockquote {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 20px 40px;
+            background: #fff;
+            border-left: 6px solid var(--accent-gold);
+            color: #555;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        blockquote cite {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-red);
+            font-family: sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark-slate);
+            color: #bbb;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Stack sidebar below main content */
+            }
+
+            header h1 { font-size: 2rem; }
+            
+            nav ul { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul li { margin: 10px 0; }
+
+            aside {
+                position: static; /* Stop sticking on mobile */
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Discover Kyoto</h1>
+        <p>Where tradition meets the timeless.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#attractions">Attractions</a></li>
+            <li><a href="#why-visit">Why Visit?</a></li>
+            <li><a href="#quotes">Inspiration</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <main>
+            <!-- EXPOSITORY SECTION: Introduction -->
+            <section id="introduction">
+                <h2>Welcome to the Ancient Capital</h2>
+                <p>
+                    Kyoto, formerly the imperial capital of Japan for more than one thousand years, is a city where history breathes in every corner. Unlike the neon-lit skyscrapers of Tokyo, Kyoto offers a landscape of 2,000 temples and shrines, traditional wooden <em>machiya</em> houses, and sublime zen gardens.
+                </p>
+                <p>
+                    It is a city that moves with the seasons—from the cherry blossoms (sakura) of spring to the fiery maples (momiji) of autumn. To visit Kyoto is to step back into a world where tea ceremonies, geisha culture, and meticulous craftsmanship are still a part of daily life.
+                </p>
+            </section>
+
+            <!-- EXPOSITORY & PERSUASIVE: Attractions -->
+            <section id="attractions">
+                <h2>Must-See Attractions</h2>
+                
+                <article>
+                    <h3>Fushimi Inari Taisha</h3>
+                    <!-- FIGURE & FIGCAPTION Added here -->
+                    <figure>
+                        <div class="placeholder-image" role="img" aria-label="A visual representation of red Torii gates">
+                            [Image: Torii Gates Path]
+                        </div>
+                        <figcaption>The endless path of vermilion torii gates.</figcaption>
+                    </figure>
+                    <p>
+                        Famous for its thousands of vermilion torii gates, which straddle a network of trails behind its main buildings, Fushimi Inari is the most important shrine dedicated to Inari, the Shinto god of rice. 
+                    </p>
+                    <div class="highlight-box">
+                        <strong>Why you should go:</strong> The hike to the summit of Mount Inari offers not just spiritual solace but breathtaking views of the city.
+                    </div>
+                </article>
+
+                <article>
+                    <h3>Kinkaku-ji (The Golden Pavilion)</h3>
+                    <p>
+                        Kinkaku-ji is a Zen temple in northern Kyoto whose top two floors are completely covered in gold leaf. Historically the retirement villa of the shogun Ashikaga Yoshimitsu, it is now one of the most iconic sights in Japan.
+                    </p>
+                    <div class="highlight-box">
+                        <strong>Why you should go:</strong> Watching the golden reflection of the temple shimmering across the Kyoko-chi (Mirror Pond) is a moment of pure serenity that defines the Japanese aesthetic.
+                    </div>
+                </article>
+            </section>
+
+            <!-- PERSUASIVE SECTION: Why Visit -->
+            <section id="why-visit">
+                <h2>Why Kyoto Will Change You</h2>
+                <p>
+                    Kyoto isn't just a sightseeing destination; it's an experience that alters your perspective on pace and beauty.
+                </p>
+                
+                <article>
+                    <h3>1. Mindfulness & Zen</h3>
+                    <p>The city's Zen gardens, such as Ryoan-ji, provide a perfect backdrop for meditation. In a world of constant noise, Kyoto teaches the value of silence.</p>
+                </article>
+
+                <article>
+                    <h3>2. Culinary Excellence</h3>
+                    <p>Experience <em>Kaiseki</em>, the traditional multi-course Japanese dinner that is as much art as it is food. Every dish honors the season and the ingredient.</p>
+                </article>
+            </section>
+
+            <!-- QUOTES SECTION -->
+            <section id="quotes">
+                <h2>Traveler's Wisdom</h2>
+                
+                <blockquote cite="https://www.goodreads.com/quotes/tag/kyoto">
+                    "Kyoto is a city that doesn't just show you its beauty; it asks you to slow down and notice it. It is the whisper of Japan compared to Tokyo's shout."
+                    <cite>— Modern Travel Blog</cite>
+                </blockquote>
+
+                <blockquote cite="https://en.wikipedia.org/wiki/Matsuo_Bash%C5%8D">
+                    "Even in Kyoto,<br>
+                    hearing the cuckoo's cry,<br>
+                    I long for Kyoto."
+                    <cite>— Matsuo Basho (Haiku Master)</cite>
+                </blockquote>
+            </section>
+        </main>
+
+        <!-- ASIDE SECTION (Added for extra credit/completeness) -->
+        <aside>
+            <h3>Quick Facts</h3>
+            <ul>
+                <li>
+                    <strong>Best Time to Visit</strong>
+                    Spring (Cherry Blossoms) or Autumn (Fall Foliage).
+                </li>
+                <li>
+                    <strong>Currency</strong>
+                    Japanese Yen (¥)
+                </li>
+                <li>
+                    <strong>Transport</strong>
+                    Kyoto is best explored by bus or bicycle. The subway lines are limited but useful.
+                </li>
+                <li>
+                    <strong>Did you know?</strong>
+                    Kyoto was the capital of Japan from 794 to 1868.
+                </li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Kyoto Travel Guide Project.</p>
+        <p>Created for "My First HTML Project" Assignment.</p>
+        <p><small>Note: This site uses semantic HTML5 and CSS3.</small></p>
+    </footer>
+
+</body>
+</html>
